@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal portfolio website showcasing projects, skills, and contact details." />
+  <meta name="keywords" content="portfolio, web developer, HTML, CSS, projects" />
+  <title>Portfolio</title>
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Theme Toggle (CSS-only) -->
+  <input type="checkbox" id="theme-toggle" aria-label="Toggle dark theme" />
+  <label for="theme-toggle" class="theme-toggle" title="Toggle theme">
+    <span aria-hidden="true">🌙</span>
+  </label>
+
+  <!-- Wrap all content so we can theme via #theme-toggle ~ .app -->
+  <div class="app">
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <a href="#home" class="logo" aria-label="Go to home">
+  <img src="data:image/png;base64,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" alt="Logo" />
+</a>
+
+        <div class="heading-group">
+          <h1 id="home">Chandana R Subramanya</h1>
+          <h2>Web Developer &amp; Designer</h2>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="site-main" role="main">
+      <!-- About Section -->
+      <section id="about" class="about section" aria-labelledby="about-title">
+        <div class="about-media">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4-MZh66HhRnEQ-MvCuyyQEQAoOdwJCUtoc9CWwEQw021Q4-kH9RydjI&s"
+          
+            sizes="(max-width: 600px) 90vw, 420px"
+            width="420"
+            height="280"
+            alt="Profile portrait of Your Name"
+            class="profile-image"
+          />
+        </div>
+        <div class="about-content">
+          <h3 id="about-title">About Me</h3>
+          <p>
+            I’m a <strong>front‑end focused</strong> developer crafting accessible, fast, and
+            delightful web experiences. With an eye for detail and a passion for clean code, I
+            turn ideas into <em>polished interfaces</em>.
+          </p>
+          <p>
+            Over the past few years, I’ve worked on projects spanning landing pages, dashboards,
+            and component libraries. I believe in writing maintainable CSS, meaningful HTML, and
+            enhancing with progressive JavaScript.
+          </p>
+          <p>
+            My work blends usability and aesthetics. I love <mark>design systems</mark>, micro‑interactions,
+            and performance. When I’m not building, I’m reading docs, sketching UI flows, or mentoring peers.
+          </p>
+          <p><small>Currently open to freelance and full‑time roles.</small></p>
+
+          <p class="about-actions">
+            <a href="https://s3.resume.io/cdn-cgi/image/width=380,format=auto/uploads/local_template_image/image/389/persistent-resource/new-york-resume-templates.jpg?v=1651656959" target="_blank" rel="noopener" class="btn" aria-label="Open resume in new tab">View Resume</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills section" aria-labelledby="skills-title">
+        <h3 id="skills-title">Skills</h3>
+
+        <div class="skills-grid" role="list">
+          <article class="skill-card" role="listitem">
+            <h4>HTML</h4>
+            <p>Semantic markup, accessibility, SEO foundations.</p>
+          </article>
+          <article class="skill-card" role="listitem">
+            <h4>CSS</h4>
+            <p>Flexbox, Grid, responsive layouts, animations, variables.</p>
+          </article>
+          <article class="skill-card" role="listitem">
+            <h4>JavaScript</h4>
+            <p>DOM, fetch, accessibility patterns, build tooling basics.</p>
+          </article>
+          <article class="skill-card" role="listitem">
+            <h4>Figma</h4>
+            <p>Wireframes, components, design tokens, prototypes.</p>
+          </article>
+        </div>
+
+        <div class="list-columns">
+          <div>
+            <h5>Technical Skills (Unordered)</h5>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Git &amp; GitHub</li>
+              <li>Responsive Design</li>
+            </ul>
+          </div>
+          <div>
+            <h5>Development Process (Ordered)</h5>
+            <ol>
+              <li>Discover &amp; define goals</li>
+              <li>Design wireframes</li>
+              <li>Develop components</li>
+              <li>Test &amp; iterate</li>
+              <li>Launch &amp; measure</li>
+            </ol>
+          </div>
+          <div>
+            <h5>Nested Lists</h5>
+            <ul>
+              <li>Frontend
+                <ul>
+                  <li>Structure: HTML5, ARIA</li>
+                  <li>Styling: CSS, Flexbox, Grid</li>
+                  <li>Behavior: JS, a11y patterns</li>
+                </ul>
+              </li>
+              <li>Backend
+                <ul>
+                  <li>APIs: REST basics</li>
+                  <li>Databases: SQL concepts</li>
+                  <li>Auth: sessions, tokens</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects section" aria-labelledby="projects-title">
+        <h3 id="projects-title">Projects</h3>
+
+        <figure class="table-wrap">
+          <figcaption>Project Overview</figcaption>
+          <table>
+            <caption class="sr-only">List of sample projects with dates and status</caption>
+            <thead>
+              <tr>
+                <th scope="col">Project Name</th>
+                <th scope="col">Technology Used</th>
+                <th scope="col">Completion Date</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Landing Page Revamp</td>
+                <td>HTML, CSS, JS</td>
+                <td>2025-05-10</td>
+                <td>Completed</td>
+              </tr>
+              <tr>
+                <td>Portfolio System</td>
+                <td>HTML, CSS</td>
+                <td>2025-06-02</td>
+                <td>Completed</td>
+              </tr>
+              <tr>
+                <td>UI Component Kit</td>
+                <td>CSS, JS</td>
+                <td>2025-07-14</td>
+                <td>In Progress</td>
+              </tr>
+              <tr>
+                <td>Analytics Dashboard</td>
+                <td>HTML, CSS, JS</td>
+                <td>2025-08-01</td>
+                <td>Planned</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <div class="showcase">
+          <div class="media">
+            <a href="https://youtu.be/2SXno61FX2k?feature=shared" 
+   target="_blank" 
+   rel="noopener noreferrer">
+   🎥 Watch Project Demo on YouTube
+</a>
+
+           
+          </div>
+          <div class="screens">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8m3AdFQohsn1yawBlIflbtePE8Ie6CnfXGQ&s"
+             
+              sizes="(max-width: 600px) 90vw, 480px"
+              width="480"
+              height="320"
+              alt="Screenshot of project interface"
+              class="screenshot"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact section" aria-labelledby="contact-title">
+        <h3 id="contact-title">Contact</h3>
+
+        <form action="#" method="post" novalidate aria-describedby="contact-help">
+          <p id="contact-help" class="form-help">Fields marked with * are required.</p>
+
+          <fieldset>
+            <legend>Your Details</legend>
+            <div class="form-row">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" inputmode="tel" autocomplete="tel" />
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Project Details</legend>
+            <div class="form-row">
+              <label for="projectType">Project Type</label>
+              <select id="projectType" name="projectType">
+                <option>Web Design</option>
+                <option>Web Development</option>
+                <option>SEO</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <span class="label">Budget Range</span>
+              <div class="option-row" role="radiogroup" aria-label="Budget Range">
+                <label><input type="radio" name="budget" value="500-1000" /> $500–1000</label>
+                <label><input type="radio" name="budget" value="1000-5000" /> $1000–5000</label>
+                <label><input type="radio" name="budget" value="5000+" /> $5000+</label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <span class="label">Services Needed</span>
+              <div class="option-row">
+                <label><input type="checkbox" name="services" value="uiux" /> UI/UX</label>
+                <label><input type="checkbox" name="services" value="frontend" /> Frontend</label>
+                <label><input type="checkbox" name="services" value="seo" /> SEO</label>
+                <label><input type="checkbox" name="services" value="content" /> Content</label>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label for="timeline">Project Timeline (months)</label>
+              <input type="range" id="timeline" name="timeline" min="1" max="12" value="6" />
+            </div>
+
+            <div class="form-row">
+              <label for="startDate">Preferred Start Date</label>
+              <input type="date" id="startDate" name="startDate" />
+            </div>
+
+            <div class="form-row">
+              <label for="description">Project Description</label>
+              <textarea id="description" name="description" placeholder="Tell me about your goals, users, scope…" rows="5"></textarea>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Submit</button>
+            <button type="reset" class="btn">Reset</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <aside class="site-aside" aria-label="Highlights">
+      <h6>Highlights</h6>
+      <ul>
+        <li>Fast load times</li>
+        <li>Accessible markup</li>
+        <li>Responsive layouts</li>
+      </ul>
+    </aside>
+
+    <footer class="site-footer" role="contentinfo">
+      <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer (progressive enhancement)
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
