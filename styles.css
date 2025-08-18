@@ -1,0 +1,305 @@
+:root {
+  --bg: #ffffff;
+  --text: #1b1f23;
+  --muted: #6a737d;
+  --primary: #3b82f6;
+  --primary-contrast: #ffffff;
+  --card: #f6f8fa;
+  --border: #e1e4e8;
+  --table-strip: #fafbfc;
+  --focus: #f59e0b;
+  --shadow: 0 10px 20px rgba(0,0,0,.06), 0 6px 6px rgba(0,0,0,.08);
+}
+
+/* Dark theme (CSS-only using checkbox + sibling) */
+#theme-toggle:checked ~ .app {
+  --bg: #0b0f14;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #60a5fa;
+  --primary-contrast: #0b0f14;
+  --card: #0f1720;
+  --border: #1f2937;
+  --table-strip: #0b1119;
+  --focus: #fde047;
+}
+
+/* Hide the raw checkbox but keep it focusable for a11y */
+#theme-toggle {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.theme-toggle {
+  position: fixed;
+  inset: 1rem 1rem auto auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .5rem .75rem;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  user-select: none;
+  transition: transform .2s ease;
+  z-index: 1000;
+}
+.theme-toggle:hover { transform: translateY(-1px) }
+.theme-toggle:active { transform: translateY(0) scale(.98) }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Utilities */
+.section { padding: 4rem 1rem; }
+h1,h2,h3,h4,h5,h6 { margin: .2rem 0 .6rem; line-height: 1.2; }
+p { margin: 0 0 1rem; }
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.btn {
+  display: inline-block;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: .6rem 1rem;
+  border-radius: .75rem;
+  transition: transform .15s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.primary { background: var(--primary); color: var(--primary-contrast); border-color: transparent; }
+.sr-only { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; clip-path: inset(50%); }
+
+/* ==============
+   Header & Nav
+   ============== */
+.site-header {
+  display: flex;
+  justify-content: space-between; /* left: logo/name, right: menu */
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  position: sticky;
+  top: 0;
+  background: color-mix(in oklab, var(--bg), transparent 10%);
+  backdrop-filter: saturate(180%) blur(6px);
+  border-bottom: 1px solid var(--border);
+  z-index: 999;
+}
+.brand { display: flex; align-items: center; gap: .9rem; }
+.logo {
+  inline-size: 40px; block-size: 40px;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  padding: 0; margin: 0;
+}
+.site-nav .nav-link {
+  display: inline-block;
+  padding: .5rem .75rem;
+  border-radius: .6rem;
+}
+.site-nav .nav-link:hover {
+  background: var(--card);
+  text-decoration: none;
+}
+
+/* Responsive Nav (stack vertically â‰¤ 768px) */
+@media (max-width: 768px) {
+  .site-header { flex-wrap: wrap; }
+  .site-nav ul { flex: 1 1 100%; justify-content: space-around; }
+}
+
+/* ==============
+   About Section
+   ============== */
+.about {
+  display: flex;               /* flexbox layout for side-by-side */
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+.about-media { flex: 0 1 420px; }
+.profile-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.about-content { flex: 1 1 480px; 
+   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.about-actions { margin-top: 1rem;
+ }
+
+/* Stack vertically on smaller screens */
+@media (max-width: 900px) {
+  .about { flex-direction: column; text-align: center; }
+  .about-content { max-width: 720px; }
+}
+
+/* ==============
+   Skills Section
+   ============== */
+.skills { max-width: 1100px; margin-inline: auto; }
+.skills-grid {
+  display: flex;               /* Flex grid */
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.skill-card {
+  flex: 1 1 220px;             /* Flexible equal-height cards */
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  min-height: 140px;
+  box-shadow: var(--shadow);
+  transition: translate .2s ease, box-shadow .2s ease;
+}
+.skill-card:hover { translate: 0 -3px; box-shadow: 0 16px 32px rgba(0,0,0,.12); }
+.list-columns {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.list-columns > div { flex: 1 1 240px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+
+/* ==============
+   Projects Section
+   ============== */
+.projects { max-width: 1100px; margin-inline: auto; }
+.table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: .5rem; }
+.table-wrap figcaption { font-weight: 600; margin: .25rem .5rem .5rem; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; }
+thead th { text-align: left; border-bottom: 2px solid var(--border); padding: .75rem; }
+tbody td { border-bottom: 1px solid var(--border); padding: .65rem .75rem; }
+tbody tr:nth-child(odd) { background: var(--table-strip); }
+tbody tr:hover { background: color-mix(in oklab, var(--table-strip), var(--primary) 8%); }
+
+.showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+}
+.showcase .media { flex: 1 1 320px; }
+.showcase .screens { flex: 1 1 320px; }
+.screenshot {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* ==============
+   Contact Form
+   ============== */
+.contact { max-width: 900px; margin-inline: auto; }
+form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+.form-help { color: var(--muted); margin-top: 0; }
+fieldset {
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+legend { padding: 0 .5rem; color: var(--muted); }
+.form-row { display: flex; flex-direction: column; gap: .4rem; margin: .75rem 0; }
+.label { font-weight: 600; display: block; margin-bottom: .3rem; }
+.option-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="range"], select, textarea {
+  padding: .65rem .75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+}
+textarea { resize: vertical; }
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-color: transparent;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus), transparent 65%);
+}
+.form-actions { display: flex; gap: .75rem; justify-content: flex-start; padding-top: .5rem; }
+
+/* ==============
+   Aside & Footer
+   ============== */
+.site-aside {
+  max-width: 1100px; margin: 0 auto 2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+.site-header{
+    background-color: #1b1f23;
+    text-wrap: wrap;
+}
+/* Logo container inside header */
+.logo {
+  display: inline-flex;       /* flexible box for centering */
+  align-items: center;
+  justify-content: center;
+  width: 60px;                /* adjust size as needed */
+  height: 60px;
+  background-color: transparent; /* let it merge with header bg */
+  margin-right: 1rem;         /* space between logo and text */
+}
+
+/* The logo image itself */
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;        /* keeps proportions */
+  display: block;
+}
